@@ -1,15 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-:root {
-  --background: #ffffff;
-  --accent: #007dfe;
-  --accent-text-contrast: #ffffff;
-  --primary-text: #333333;
-  --secondary-text: #999999;
-  --border: #cccccc;
-  --border-focus: #666666;
-  --snow: #f2f2f2;
-}
+@import './app/styles/variables.scss';
 
 *,
 *::before,
@@ -36,8 +27,8 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  color: var(--primary-text);
-  background: var(--background);
+  color: $primary-text;
+  background: $background;
 }
 
 input,
@@ -46,5 +37,5 @@ select,
 code,
 textarea {
   font-size: 1.6rem;
-  color: var(--primary-text);
+  color: $primary-text;
 }
