@@ -38,10 +38,7 @@
           </div>
         </app-input>
 
-        <div
-          class="login-content-form-error"
-          *ngIf="showErrors && !!errorMessage"
-        >
+        <div class="login-content-form-error" *ngIf="!!errorMessage">
           {{ errorMessage }}
         </div>
 
