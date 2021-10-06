@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core'
 import { FeatherModule } from 'angular-feather'
-import { Eye, LogIn } from 'angular-feather/icons'
+import { Eye, EyeOff, LogIn } from 'angular-feather/icons'
 
 const icons = {
   Eye,
+  EyeOff,
   LogIn,
 }
 

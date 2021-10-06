@@ -1,0 +1,88 @@
+@import '../styles/variables.scss';
+
+.container {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+
+  .login {
+    flex: 1 35%;
+    min-width: 50rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: $snow;
+    padding: 2.4rem;
+
+    .login-content {
+      width: 100%;
+      max-width: 80%;
+      margin: 0 auto;
+
+      .login-logo-content {
+        max-width: 100%;
+      }
+
+      .login-content-title {
+        margin: 1.6rem 0 4.8rem 0;
+        font-size: 3rem;
+      }
+
+      .login-content-form {
+        > *:not(:last-child) {
+          margin-bottom: 2.4rem;
+        }
+
+        .login-content-form-show-password {
+          height: 4rem;
+          width: 4rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 0.8rem;
+          cursor: pointer;
+          transition: color 0.2s ease-in-out;
+          color: $secondary-text;
+
+          &:hover {
+            color: $accent;
+          }
+        }
+
+        .login-content-form-error {
+          color: $error;
+        }
+      }
+    }
+  }
+
+  .svg {
+    flex: 1 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.4rem;
+
+    .svg-image {
+      max-width: 100%;
+      min-width: 25rem;
+    }
+  }
+
+  @media only screen and (max-width: 968px) {
+    flex-direction: column;
+
+    .svg {
+      display: none;
+    }
+
+    .login {
+      min-width: auto;
+
+      .login-content {
+        max-width: 60rem;
+      }
+    }
+  }
+}

@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
 import { IconsModule } from './icons/icons.module'
+import { InputComponent } from './components/input/input.component'
+import { ButtonComponent } from './components/button/button.component'
 
 @NgModule({
-  declarations: [],
+  declarations: [InputComponent, ButtonComponent],
   imports: [CommonModule, IconsModule],
-  exports: [IconsModule],
+  exports: [IconsModule, InputComponent, ButtonComponent],
 })
 export class SharedModule {}

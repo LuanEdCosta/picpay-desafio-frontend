@@ -1,0 +1,7 @@
+<button
+  [ngClass]="withIcon ? 'button with-icon' : 'button'"
+  [type]="type"
+  (click)="onClick && onClick($event)"
+>
+  <ng-content></ng-content>
+</button>

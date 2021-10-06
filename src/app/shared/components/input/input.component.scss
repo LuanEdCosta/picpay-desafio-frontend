@@ -1,0 +1,55 @@
+@import '../../../styles/variables.scss';
+
+:host {
+  position: relative;
+  display: block;
+
+  .label {
+    position: absolute;
+    top: -0.8rem;
+    left: 1.6rem;
+    z-index: 1;
+    padding: 0 0.8rem;
+    font-size: 1.2rem;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    border: 1px solid $border;
+    border-radius: 0.8rem;
+    overflow: hidden;
+
+    .content-input {
+      flex: 1;
+    }
+
+    .content-input ::ng-deep :first-child {
+      width: 100%;
+      outline: none;
+      padding: 0 1.6rem;
+      height: 5.6rem;
+      outline: none;
+      border: none;
+
+      &:focus {
+        border-color: $border-focus;
+      }
+    }
+  }
+
+  $colors: (
+    'background': $background,
+    'snow': $snow,
+  );
+
+  @each $name, $color in $colors {
+    .background-color-#{$name} {
+      background: $color;
+    }
+
+    .input-background-color-#{$name} ::ng-deep :first-child {
+      background: $color;
+    }
+  }
+}
