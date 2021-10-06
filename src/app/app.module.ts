@@ -8,9 +8,10 @@ import { AppRoutingModule } from './app-routing.module'
 
 import { SharedModule } from './shared/shared.module'
 import { LoginComponent } from './login/login.component'
+import { TasksComponent } from './tasks/tasks.component'
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, TasksComponent],
   imports: [
     BrowserModule,
     FormsModule,
