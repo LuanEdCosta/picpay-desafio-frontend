@@ -35,19 +35,7 @@
         }
 
         .login-content-form-show-password {
-          height: 4rem;
-          width: 4rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 0.8rem;
-          cursor: pointer;
-          transition: color 0.2s ease-in-out;
-          color: $secondary-text;
-
-          &:hover {
-            color: $accent;
-          }
+          margin-right: 0.8rem;
         }
 
         .login-content-form-error {

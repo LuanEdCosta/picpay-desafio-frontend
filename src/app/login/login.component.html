@@ -29,13 +29,13 @@
             [type]="showPassword ? 'text' : 'password'"
           />
 
-          <div
+          <app-icon-button
             class="login-content-form-show-password"
-            (click)="togglePassword()"
+            [onClick]="togglePassword.bind(this)"
             right
           >
             <i-feather [name]="showPassword ? 'eye-off' : 'eye'"></i-feather>
-          </div>
+          </app-icon-button>
         </app-input>
 
         <div class="login-content-form-error" *ngIf="!!errorMessage">
