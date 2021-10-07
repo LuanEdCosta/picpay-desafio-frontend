@@ -69,6 +69,10 @@
                 > * {
                   margin: 0 0.4rem;
                 }
+
+                &.col-text-center {
+                  justify-content: center;
+                }
               }
             }
           }
@@ -90,6 +94,18 @@
                 color: $secondary-text;
                 font-size: 1.4rem;
                 margin-top: 0.4rem;
+              }
+
+              &.col-center {
+                text-align: center;
+              }
+
+              .paid {
+                color: $success;
+              }
+
+              .not-paid {
+                color: $danger;
               }
             }
 

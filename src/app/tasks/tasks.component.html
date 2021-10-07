@@ -27,7 +27,12 @@
             ></i-feather>
           </app-input>
 
-          <app-button color="snow" size="small" [withIcon]="true">
+          <app-button
+            [onClick]="filterTasks.bind(this)"
+            color="snow"
+            size="small"
+            [withIcon]="true"
+          >
             <i-feather name="sliders"></i-feather>
             <span>Filtrar</span>
           </app-button>
@@ -43,7 +48,12 @@
               class="content-data-table-head-row-col"
               *ngFor="let column of tableColumns"
             >
-              <div class="content-data-table-head-row-col-text">
+              <div
+                [ngClass]="{
+                  'content-data-table-head-row-col-text': true,
+                  'col-text-center': column.centered
+                }"
+              >
                 <span>{{ column.label }}</span>
                 <i-feather name="chevron-up"></i-feather>
               </div>
@@ -54,18 +64,29 @@
         </thead>
 
         <tbody class="content-data-table-body">
-          <tr class="content-data-table-body-row">
+          <tr class="content-data-table-body-row" *ngFor="let task of tasks">
             <td class="content-data-table-body-row-col">
-              <div>Data</div>
-              <div>Data</div>
+              <div>{{ task.name }}</div>
+              <div>@{{ task.username }}</div>
             </td>
-            <td class="content-data-table-body-row-col">Data</td>
+
+            <td class="content-data-table-body-row-col">{{ task.title }}</td>
+
             <td class="content-data-table-body-row-col">
-              <div>Data</div>
-              <div>Data</div>
+              <div>{{ task.date | date: 'd MMM y' }}</div>
+              <div>{{ task.date | date: 'shortTime' }}</div>
             </td>
-            <td class="content-data-table-body-row-col">Data</td>
-            <td class="content-data-table-body-row-col">Data</td>
+
+            <td class="content-data-table-body-row-col">
+              R$ {{ (task.value | number: '1.2-2').replace('.', ',') }}
+            </td>
+
+            <td class="content-data-table-body-row-col col-center">
+              <i-feather
+                [ngClass]="task.isPayed ? 'paid' : 'not-paid'"
+                [name]="task.isPayed ? 'check-circle' : 'x-circle'"
+              ></i-feather>
+            </td>
 
             <td class="content-data-table-body-row-actions">
               <app-icon-button>

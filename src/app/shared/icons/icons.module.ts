@@ -10,6 +10,8 @@ import {
   Search,
   Edit2,
   Trash,
+  CheckCircle,
+  XCircle,
 } from 'angular-feather/icons'
 
 const icons = {
@@ -22,6 +24,8 @@ const icons = {
   Search,
   Edit2,
   Trash,
+  CheckCircle,
+  XCircle,
 }
 
 @NgModule({
