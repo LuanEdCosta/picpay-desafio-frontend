@@ -1,11 +1,15 @@
-<div class="label background-color-{{ color }}">{{ label }}</div>
-
-<div class="content">
-  <ng-content select="[left]"></ng-content>
-
-  <div class="content-input input-background-color-{{ color }}">
-    <ng-content></ng-content>
+<div class="container">
+  <div class="label background-color-{{ color }}" *ngIf="!!label">
+    {{ label }}
   </div>
 
-  <ng-content select="[right]"></ng-content>
+  <div [ngClass]="{ content: true, 'content-small': size === 'small' }">
+    <ng-content select="[left]"></ng-content>
+
+    <div class="content-input input-background-color-{{ color }}">
+      <ng-content></ng-content>
+    </div>
+
+    <ng-content select="[right]"></ng-content>
+  </div>
 </div>

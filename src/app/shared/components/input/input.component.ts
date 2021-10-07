@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core'
 
 type InputColors = 'background' | 'snow'
+type InputSizes = 'default' | 'small'
 
 @Component({
   selector: 'app-input',
@@ -10,6 +11,7 @@ type InputColors = 'background' | 'snow'
 export class InputComponent {
   @Input() label: string = ''
   @Input() color: InputColors = 'background'
+  @Input() size: InputSizes = 'default'
 
   constructor() {}
 }
