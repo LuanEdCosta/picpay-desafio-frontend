@@ -12,11 +12,15 @@
 
     <div class="content-data">
       <div class="content-data-header">
-        <div class="content-data-header-filters">
+        <form
+          class="content-data-header-filters"
+          (submit)="filterTasks($event)"
+        >
           <app-input color="background" size="small">
             <input
               type="text"
               placeholder="Pesquisar por usuário"
+              [ngModelOptions]="{ standalone: true }"
               [(ngModel)]="search"
             />
 
@@ -27,16 +31,11 @@
             ></i-feather>
           </app-input>
 
-          <app-button
-            [onClick]="filterTasks.bind(this)"
-            color="snow"
-            size="small"
-            [withIcon]="true"
-          >
+          <app-button type="submit" color="snow" size="small" [withIcon]="true">
             <i-feather name="sliders"></i-feather>
             <span>Filtrar</span>
           </app-button>
-        </div>
+        </form>
 
         <div class="content-data-header-pagination"></div>
       </div>
@@ -73,12 +72,12 @@
             <td class="content-data-table-body-row-col">{{ task.title }}</td>
 
             <td class="content-data-table-body-row-col">
-              <div>{{ task.date | date: 'd MMM y' }}</div>
-              <div>{{ task.date | date: 'shortTime' }}</div>
+              <div>{{ task.date | date: 'd MMM y':'':'pt-BR' }}</div>
+              <div>{{ task.date | date: 'shortTime':'':'pt-BR' }}</div>
             </td>
 
             <td class="content-data-table-body-row-col">
-              R$ {{ (task.value | number: '1.2-2').replace('.', ',') }}
+              R$ {{ task.value | number: '':'pt-BR' }}
             </td>
 
             <td class="content-data-table-body-row-col col-center">

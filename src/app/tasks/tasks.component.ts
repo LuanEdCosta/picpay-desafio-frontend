@@ -36,7 +36,8 @@ export class TasksComponent implements OnInit {
     console.log('Add payments')
   }
 
-  filterTasks() {
+  filterTasks(e: Event) {
+    e.preventDefault()
     this.tasksService
       .getTasks({ limit: 5, search: this.search })
       .subscribe((tasks) => {
