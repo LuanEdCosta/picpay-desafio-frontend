@@ -8,6 +8,8 @@ import { Component, Input } from '@angular/core'
 export class ButtonComponent {
   @Input() withIcon: boolean = false
   @Input() type: 'submit' | 'button' | 'reset' = 'button'
+  @Input() size: 'default' | 'small' = 'default'
+  @Input() color: 'accent' | 'snow' = 'accent'
   @Input() onClick?: (e: Event) => void
 
   constructor() {}

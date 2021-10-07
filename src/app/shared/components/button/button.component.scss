@@ -5,8 +5,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $accent;
-    color: $accent-text-contrast;
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 0.8rem;
@@ -14,8 +12,27 @@
     border: none;
     height: 5.6rem;
     width: 100%;
-    padding: 0 1.6rem;
+    padding: 0 2.4rem;
     cursor: pointer;
+    background: $snow;
+    color: $primary-text;
+  }
+
+  .with-icon ::ng-deep {
+    padding: 0 1.6rem;
+
+    > * {
+      margin: 0 0.8rem;
+    }
+  }
+
+  .button-small {
+    height: 4rem;
+  }
+
+  .button-accent {
+    background: $accent;
+    color: $accent-text-contrast;
     transition: background 0.2s ease-in-out;
 
     &:hover,
@@ -24,11 +41,14 @@
     }
   }
 
-  .with-icon ::ng-deep {
-    padding: 0 0.8rem;
+  .button-snow {
+    background: $snow;
+    color: $primary-text;
+    transition: background 0.2s ease-in-out;
 
-    > * {
-      margin: 0 0.8rem;
+    &:hover,
+    &:focus {
+      background: $snow-dark;
     }
   }
 }
