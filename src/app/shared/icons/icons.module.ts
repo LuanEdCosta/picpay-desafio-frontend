@@ -1,11 +1,27 @@
 import { NgModule } from '@angular/core'
 import { FeatherModule } from 'angular-feather'
-import { Eye, EyeOff, LogIn } from 'angular-feather/icons'
+import {
+  Eye,
+  EyeOff,
+  LogIn,
+  Plus,
+  Sliders,
+  ChevronUp,
+  Search,
+  Edit2,
+  Trash,
+} from 'angular-feather/icons'
 
 const icons = {
   Eye,
   EyeOff,
   LogIn,
+  Plus,
+  Sliders,
+  ChevronUp,
+  Search,
+  Edit2,
+  Trash,
 }
 
 @NgModule({

@@ -1,0 +1,111 @@
+@import '../styles/variables.scss';
+
+.container {
+  background: $snow;
+  min-height: 100vh;
+
+  .content {
+    padding: 6.5rem 5%;
+
+    .content-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.6rem;
+
+      .content-title {
+        font-size: 3.6rem;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    .content-data {
+      overflow: hidden;
+      border-radius: 0.8rem;
+      background: $background;
+      box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.1);
+
+      .content-data-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.6rem;
+        // height: 6.4rem;
+
+        .content-data-header-filters {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          margin: 0 -0.8rem;
+
+          > * {
+            margin: 0 0.8rem;
+          }
+
+          .content-data-header-filters-search-icon {
+            margin-right: 1.6rem;
+            color: $secondary-text;
+          }
+        }
+      }
+
+      .content-data-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        .content-data-table-head {
+          border-bottom: 2px solid $table-head-divider;
+
+          .content-data-table-head-row {
+            .content-data-table-head-row-col {
+              padding: 1.6rem 1.2rem;
+
+              .content-data-table-head-row-col-text {
+                display: flex;
+                align-items: center;
+
+                > * {
+                  margin: 0 0.4rem;
+                }
+              }
+            }
+          }
+        }
+
+        .content-data-table-body {
+          .content-data-table-body-row {
+            &:nth-child(even) {
+              background-color: $table-line-background;
+            }
+
+            .content-data-table-body-row-col,
+            .content-data-table-body-row-actions {
+              padding: 3.2rem 1.6rem;
+            }
+
+            .content-data-table-body-row-col {
+              > *:not(:first-child) {
+                color: $secondary-text;
+                font-size: 1.4rem;
+                margin-top: 0.4rem;
+              }
+            }
+
+            .content-data-table-body-row-actions {
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+              margin: 0 -0.4rem;
+
+              > * {
+                margin: 0 0.4rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,84 @@
 <div class="container">
   <app-header></app-header>
+
+  <div class="content">
+    <div class="content-header">
+      <h1 class="content-title">Meus Pagamentos</h1>
+      <app-button [onClick]="addPayment" size="small" [withIcon]="true">
+        <span>Adicionar Pagamento</span>
+        <i-feather name="plus"></i-feather>
+      </app-button>
+    </div>
+
+    <div class="content-data">
+      <div class="content-data-header">
+        <div class="content-data-header-filters">
+          <app-input color="background" size="small">
+            <input
+              type="text"
+              placeholder="Pesquisar por usuário"
+              [(ngModel)]="search"
+            />
+
+            <i-feather
+              class="content-data-header-filters-search-icon"
+              name="search"
+              right
+            ></i-feather>
+          </app-input>
+
+          <app-button color="snow" size="small" [withIcon]="true">
+            <i-feather name="sliders"></i-feather>
+            <span>Filtrar</span>
+          </app-button>
+        </div>
+
+        <div class="content-data-header-pagination"></div>
+      </div>
+
+      <table class="content-data-table">
+        <thead class="content-data-table-head">
+          <tr class="content-data-table-head-row">
+            <th
+              class="content-data-table-head-row-col"
+              *ngFor="let column of tableColumns"
+            >
+              <div class="content-data-table-head-row-col-text">
+                <span>{{ column.label }}</span>
+                <i-feather name="chevron-up"></i-feather>
+              </div>
+            </th>
+
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody class="content-data-table-body">
+          <tr class="content-data-table-body-row">
+            <td class="content-data-table-body-row-col">
+              <div>Data</div>
+              <div>Data</div>
+            </td>
+            <td class="content-data-table-body-row-col">Data</td>
+            <td class="content-data-table-body-row-col">
+              <div>Data</div>
+              <div>Data</div>
+            </td>
+            <td class="content-data-table-body-row-col">Data</td>
+            <td class="content-data-table-body-row-col">Data</td>
+
+            <td class="content-data-table-body-row-actions">
+              <app-icon-button>
+                <i-feather name="edit-2"></i-feather>
+              </app-icon-button>
+
+              <app-icon-button>
+                <i-feather name="trash"></i-feather>
+              </app-icon-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
