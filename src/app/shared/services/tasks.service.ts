@@ -6,11 +6,15 @@ type GetTasksOptions = {
   limit: number
   page?: number
   search?: string
+  sortBy?: string
+  sortOrder?: 'asc' | 'desc'
 }
 
 type Filters = {
   _limit: string
   _page?: string
+  _sort?: string
+  _order?: string
   q?: string
 }
 
@@ -33,10 +37,18 @@ export class TasksService {
 
   constructor(private http: HttpClient) {}
 
-  getTasks({ page, limit, search }: GetTasksOptions): Observable<Task[]> {
+  getTasks({
+    page,
+    limit,
+    search,
+    sortBy,
+    sortOrder,
+  }: GetTasksOptions): Observable<Task[]> {
     const filters: Filters = { _limit: String(limit) }
     if (page) filters._page = String(page)
     if (search) filters.q = search
+    if (sortBy) filters._sort = sortBy
+    if (sortOrder) filters._order = sortOrder
     const params = new URLSearchParams(filters)
     return this.http.get<Task[]>(`${this.baseUrl}?${params}`)
   }

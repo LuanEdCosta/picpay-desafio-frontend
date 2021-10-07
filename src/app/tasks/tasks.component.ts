@@ -7,6 +7,13 @@ type TableColumn = {
   centered: boolean
 }
 
+enum SORT_ORDER {
+  ASC = 'asc',
+  DESC = 'desc',
+}
+
+type SortOrder = SORT_ORDER.ASC | SORT_ORDER.DESC
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -16,13 +23,40 @@ export class TasksComponent implements OnInit {
   search: string = ''
   tasks: Task[] = []
 
+  sortBy: string = ''
+  sortOrder?: SortOrder
+
   tableColumns: TableColumn[] = [
-    { key: 'user', label: 'Usuário', centered: false },
+    { key: 'name', label: 'Usuário', centered: false },
     { key: 'title', label: 'Título', centered: false },
     { key: 'date', label: 'Data', centered: false },
     { key: 'value', label: 'Valor', centered: false },
-    { key: 'paid', label: 'Pago', centered: true },
+    { key: 'isPayed', label: 'Pago', centered: true },
   ]
+
+  setSortBy(sortBy: string) {
+    if (this.sortBy !== sortBy) {
+      this.sortOrder = undefined
+      this.sortBy = ''
+    }
+
+    if (!this.sortOrder) {
+      this.sortOrder = SORT_ORDER.ASC
+      this.sortBy = sortBy
+    } else if (this.sortOrder === SORT_ORDER.ASC) {
+      this.sortOrder = SORT_ORDER.DESC
+      this.sortBy = sortBy
+    } else {
+      this.sortOrder = undefined
+      this.sortBy = ''
+    }
+
+    this.tasksService
+      .getTasks({ limit: 5, sortBy: this.sortBy, sortOrder: this.sortOrder })
+      .subscribe((tasks) => {
+        this.tasks = tasks
+      })
+  }
 
   constructor(private tasksService: TasksService) {}
 

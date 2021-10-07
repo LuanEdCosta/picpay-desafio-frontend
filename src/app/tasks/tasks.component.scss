@@ -31,17 +31,16 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        padding: 1.6rem;
-        // height: 6.4rem;
+        padding: 0.8rem;
+        height: 6.4rem;
 
         .content-data-header-filters {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
-          margin: 0 -0.8rem;
 
           > * {
-            margin: 0 0.8rem;
+            margin: 0.8rem;
           }
 
           .content-data-header-filters-search-icon {
@@ -60,11 +59,20 @@
 
           .content-data-table-head-row {
             .content-data-table-head-row-col {
-              padding: 1.6rem 1.2rem;
+              padding: 0.8rem 0.6rem;
 
               .content-data-table-head-row-col-text {
                 display: flex;
                 align-items: center;
+                height: 4rem;
+                padding: 0.8rem 0.6rem;
+                border-radius: 0.8rem;
+                cursor: pointer;
+                transition: background 0.2s ease-in-out;
+
+                &:hover {
+                  background: $snow;
+                }
 
                 > * {
                   margin: 0 0.4rem;

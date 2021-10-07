@@ -19,7 +19,7 @@
           <app-input color="background" size="small">
             <input
               type="text"
-              placeholder="Pesquisar por usuário"
+              placeholder="Pesquisar por usuário..."
               [ngModelOptions]="{ standalone: true }"
               [(ngModel)]="search"
             />
@@ -52,9 +52,14 @@
                   'content-data-table-head-row-col-text': true,
                   'col-text-center': column.centered
                 }"
+                (click)="setSortBy(column.key)"
               >
                 <span>{{ column.label }}</span>
-                <i-feather name="chevron-up"></i-feather>
+
+                <i-feather
+                  *ngIf="sortBy === column.key"
+                  [name]="sortOrder === 'asc' ? 'chevron-down' : 'chevron-up'"
+                ></i-feather>
               </div>
             </th>
 
