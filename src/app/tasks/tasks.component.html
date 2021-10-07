@@ -4,7 +4,7 @@
   <div class="content">
     <div class="content-header">
       <h1 class="content-title">Meus Pagamentos</h1>
-      <app-button [onClick]="addPayment" size="small" [withIcon]="true">
+      <app-button (click)="addPayment()" size="small" [withIcon]="true">
         <span>Adicionar Pagamento</span>
         <i-feather name="plus"></i-feather>
       </app-button>
@@ -37,7 +37,25 @@
           </app-button>
         </form>
 
-        <div class="content-data-header-pagination"></div>
+        <div class="content-data-header-pagination">
+          <div class="content-data-header-pagination-limiter">
+            <span>Exibir:</span>
+            <select [(ngModel)]="rowsPerPage" (change)="changeRowsPerPage()">
+              <option
+                *ngFor="let numberOfRows of rowsPerPageOptions"
+                [value]="numberOfRows"
+              >
+                {{ numberOfRows }}
+              </option>
+            </select>
+          </div>
+
+          <app-pagination
+            [totalOfPages]="getTotalOfPages()"
+            [selectedPage]="currentPage"
+            (changePage)="changePage($event)"
+          ></app-pagination>
+        </div>
       </div>
 
       <table class="content-data-table">

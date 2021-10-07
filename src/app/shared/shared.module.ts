@@ -7,6 +7,7 @@ import { InputComponent } from './components/input/input.component'
 import { ButtonComponent } from './components/button/button.component'
 import { HeaderComponent } from './components/header/header.component'
 import { IconButtonComponent } from './components/icon-button/icon-button.component'
+import { PaginationComponent } from './components/pagination/pagination.component'
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
     ButtonComponent,
     HeaderComponent,
     IconButtonComponent,
+    PaginationComponent,
   ],
   imports: [CommonModule, IconsModule, HttpClientModule],
   exports: [
@@ -22,6 +24,7 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
     ButtonComponent,
     HeaderComponent,
     IconButtonComponent,
+    PaginationComponent,
   ],
 })
 export class SharedModule {}

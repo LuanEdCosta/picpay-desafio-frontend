@@ -20,11 +20,14 @@ type SortOrder = SORT_ORDER.ASC | SORT_ORDER.DESC
   styleUrls: ['./tasks.component.scss'],
 })
 export class TasksComponent implements OnInit {
-  search: string = ''
   tasks: Task[] = []
 
+  search: string = ''
   sortBy: string = ''
   sortOrder?: SortOrder
+  rowsPerPage: number = 5
+  currentPage: number = 1
+  totalOfTasks: number = 0
 
   tableColumns: TableColumn[] = [
     { key: 'name', label: 'Usuário', centered: false },
@@ -33,6 +36,25 @@ export class TasksComponent implements OnInit {
     { key: 'value', label: 'Valor', centered: false },
     { key: 'isPayed', label: 'Pago', centered: true },
   ]
+
+  rowsPerPageOptions = [5, 10, 15, 20, 25]
+
+  constructor(private tasksService: TasksService) {}
+
+  getTasks() {
+    this.tasksService
+      .getTasks({
+        limit: this.rowsPerPage,
+        search: this.search,
+        page: this.currentPage,
+        sortBy: this.sortBy,
+        sortOrder: this.sortOrder,
+      })
+      .subscribe((response) => {
+        this.tasks = response.body
+        this.totalOfTasks = Number(response.headers.get('X-Total-Count') || 0)
+      })
+  }
 
   setSortBy(sortBy: string) {
     if (this.sortBy !== sortBy) {
@@ -51,19 +73,11 @@ export class TasksComponent implements OnInit {
       this.sortBy = ''
     }
 
-    this.tasksService
-      .getTasks({ limit: 5, sortBy: this.sortBy, sortOrder: this.sortOrder })
-      .subscribe((tasks) => {
-        this.tasks = tasks
-      })
+    this.getTasks()
   }
 
-  constructor(private tasksService: TasksService) {}
-
   ngOnInit(): void {
-    this.tasksService.getTasks({ limit: 5, page: 0 }).subscribe((tasks) => {
-      this.tasks = tasks
-    })
+    this.getTasks()
   }
 
   addPayment() {
@@ -72,10 +86,21 @@ export class TasksComponent implements OnInit {
 
   filterTasks(e: Event) {
     e.preventDefault()
-    this.tasksService
-      .getTasks({ limit: 5, search: this.search })
-      .subscribe((tasks) => {
-        this.tasks = tasks
-      })
+    this.currentPage = 1
+    this.getTasks()
+  }
+
+  changePage(page: number) {
+    this.currentPage = page
+    this.getTasks()
+  }
+
+  changeRowsPerPage() {
+    this.currentPage = 1
+    this.getTasks()
+  }
+
+  getTotalOfPages(): number {
+    return Math.floor(this.totalOfTasks / this.rowsPerPage)
   }
 }

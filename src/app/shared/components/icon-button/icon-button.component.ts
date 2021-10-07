@@ -7,7 +7,6 @@ import { Component, Input } from '@angular/core'
 })
 export class IconButtonComponent {
   @Input() type: 'submit' | 'button' | 'reset' = 'button'
-  @Input() onClick?: (e: Event) => void
 
   constructor() {}
 }

@@ -31,7 +31,7 @@
 
           <app-icon-button
             class="login-content-form-show-password"
-            [onClick]="togglePassword.bind(this)"
+            (click)="togglePassword()"
             right
           >
             <i-feather [name]="showPassword ? 'eye-off' : 'eye'"></i-feather>

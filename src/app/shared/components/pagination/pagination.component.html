@@ -1,0 +1,21 @@
+<div class="pagination">
+  <app-icon-button (click)="previousPage()">
+    <i-feather name="chevron-left"></i-feather>
+  </app-icon-button>
+
+  <ng-container *ngFor="let page of pages">
+    <app-icon-button
+      (click)="selectPage(getPage(page))"
+      [ngClass]="{
+        'pagination-selected': getPage(page) === selectedPage,
+        'pagination-disabled': getPage(page) > totalOfPages
+      }"
+    >
+      <span>{{ getPage(page) }}</span>
+    </app-icon-button>
+  </ng-container>
+
+  <app-icon-button (click)="nextPage()">
+    <i-feather name="chevron-right"></i-feather>
+  </app-icon-button>
+</div>

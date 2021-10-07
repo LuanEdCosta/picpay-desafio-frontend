@@ -9,6 +9,7 @@
 
     .content-header {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 1.6rem;
@@ -32,7 +33,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 0.8rem;
-        height: 6.4rem;
+        min-height: 6.4rem;
 
         .content-data-header-filters {
           display: flex;
@@ -46,6 +47,38 @@
           .content-data-header-filters-search-icon {
             margin-right: 1.6rem;
             color: $secondary-text;
+          }
+        }
+
+        .content-data-header-pagination {
+          display: flex;
+          align-items: center;
+
+          > * {
+            margin: 0.8rem;
+          }
+
+          .content-data-header-pagination-limiter {
+            display: flex;
+            align-items: center;
+
+            > :first-child {
+              margin-right: 0.8rem;
+            }
+
+            select {
+              padding: 0.8rem 1.6rem;
+              height: 4rem;
+              border-radius: 0.8rem;
+              border: 1px solid $border;
+              outline: none;
+              cursor: pointer;
+              transition: border-color 0.2s ease-in-out;
+
+              &:focus {
+                border-color: $border-focus;
+              }
+            }
           }
         }
       }

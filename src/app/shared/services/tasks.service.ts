@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
+import { Injectable } from '@angular/core'
+import { HttpClient, HttpResponse } from '@angular/common/http'
 
 type GetTasksOptions = {
   limit: number
@@ -43,13 +43,15 @@ export class TasksService {
     search,
     sortBy,
     sortOrder,
-  }: GetTasksOptions): Observable<Task[]> {
+  }: GetTasksOptions): Observable<HttpResponse<Task[]>> {
     const filters: Filters = { _limit: String(limit) }
     if (page) filters._page = String(page)
     if (search) filters.q = search
     if (sortBy) filters._sort = sortBy
     if (sortOrder) filters._order = sortOrder
     const params = new URLSearchParams(filters)
-    return this.http.get<Task[]>(`${this.baseUrl}?${params}`)
+    return this.http.get<Task[]>(`${this.baseUrl}?${params}`, {
+      observe: 'response',
+    })
   }
 }

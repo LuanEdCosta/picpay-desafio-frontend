@@ -1,0 +1,40 @@
+@import '../../../styles/variables.scss';
+
+:host {
+  .pagination {
+    display: flex;
+    align-items: center;
+
+    > * {
+      margin: 0 0.2rem;
+      border-radius: 0.8rem;
+      transition: background 0.2s ease-in-out;
+
+      ::ng-deep {
+        > :first-child {
+          height: 3rem;
+          width: 3rem;
+          padding: 0;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        background: $snow;
+      }
+    }
+
+    .pagination-selected:not(:first-child):not(:last-child) ::ng-deep {
+      background: $accent;
+
+      > * {
+        color: white;
+      }
+    }
+
+    .pagination-disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+  }
+}

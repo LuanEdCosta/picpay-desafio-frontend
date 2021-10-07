@@ -10,7 +10,6 @@ export class ButtonComponent {
   @Input() type: 'submit' | 'button' | 'reset' = 'button'
   @Input() size: 'default' | 'small' = 'default'
   @Input() color: 'accent' | 'snow' = 'accent'
-  @Input() onClick?: (e: Event) => void
 
   constructor() {}
 }
