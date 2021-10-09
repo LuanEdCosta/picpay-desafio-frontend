@@ -9,7 +9,7 @@ export class ButtonComponent {
   @Input() withIcon: boolean = false
   @Input() type: 'submit' | 'button' | 'reset' = 'button'
   @Input() size: 'default' | 'small' = 'default'
-  @Input() color: 'accent' | 'snow' = 'accent'
+  @Input() color: 'accent' | 'snow' | 'danger' = 'accent'
 
   constructor() {}
 }

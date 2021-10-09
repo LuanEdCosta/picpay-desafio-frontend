@@ -54,4 +54,8 @@ export class TasksService {
       observe: 'response',
     })
   }
+
+  deleteTask(id: number) {
+    return this.http.delete(`${this.baseUrl}/${id}`)
+  }
 }

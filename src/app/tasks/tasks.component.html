@@ -115,7 +115,7 @@
                 <i-feather name="edit-2"></i-feather>
               </app-icon-button>
 
-              <app-icon-button>
+              <app-icon-button (click)="setTaskToDelete(task)">
                 <i-feather name="trash"></i-feather>
               </app-icon-button>
             </td>
@@ -125,3 +125,48 @@
     </div>
   </div>
 </div>
+
+<app-alert-modal
+  title="Excluir Pagamento"
+  [isOpen]="!!this.taskToDelete"
+  (closeModal)="setTaskToDelete(undefined)"
+>
+  <div class="delete-payment-modal">
+    <div class="delete-payment-modal-data">
+      <strong>Usuário:</strong>
+      <span>{{ taskToDelete?.name }}</span>
+    </div>
+
+    <div class="delete-payment-modal-data">
+      <strong>Data:</strong>
+      <span>{{ taskToDelete?.date | date: 'd MMM y':'':'pt-BR' }}</span>
+    </div>
+
+    <div class="delete-payment-modal-data">
+      <strong>Valor:</strong>
+      <span>{{ taskToDelete?.value | date: 'd MMM y':'':'pt-BR' }}</span>
+    </div>
+
+    <div class="delete-payment-modal-actions">
+      <app-button
+        (click)="setTaskToDelete(undefined)"
+        color="snow"
+        size="small"
+        [withIcon]="true"
+      >
+        <span>Cancelar</span>
+        <i-feather name="x"></i-feather>
+      </app-button>
+
+      <app-button
+        (click)="deleteTask()"
+        color="danger"
+        size="small"
+        [withIcon]="true"
+      >
+        <span>Excluir</span>
+        <i-feather name="trash"></i-feather>
+      </app-button>
+    </div>
+  </div>
+</app-alert-modal>

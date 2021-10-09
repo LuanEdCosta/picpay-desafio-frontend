@@ -1,0 +1,32 @@
+@import '../../../styles/variables.scss';
+
+.dialog {
+  overflow: hidden;
+  border-radius: 0.8rem;
+  background: $background;
+  box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.2);
+
+  &.dialog-large {
+    width: 76.8rem;
+
+    @media only screen and (max-width: 996px) {
+      width: 95vw;
+    }
+  }
+
+  &.dialog-medium {
+    width: 64rem;
+
+    @media only screen and (max-width: 768px) {
+      width: 95vw;
+    }
+  }
+
+  &.dialog-small {
+    width: 48rem;
+
+    @media only screen and (max-width: 556px) {
+      width: 95vw;
+    }
+  }
+}

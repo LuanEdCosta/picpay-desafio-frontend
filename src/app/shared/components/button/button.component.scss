@@ -51,4 +51,15 @@
       background: $snow-dark;
     }
   }
+
+  .button-danger {
+    background: $danger;
+    color: white;
+    transition: background 0.2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background: red;
+    }
+  }
 }

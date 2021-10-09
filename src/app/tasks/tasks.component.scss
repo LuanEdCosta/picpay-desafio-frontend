@@ -166,3 +166,31 @@
     }
   }
 }
+
+.delete-payment-modal {
+  padding: 1.6rem 1.6rem 0.8rem 1.6rem;
+
+  .delete-payment-modal-data {
+    margin-bottom: 0.8rem;
+
+    > :first-child {
+      margin-right: 0.8rem;
+    }
+  }
+
+  .delete-payment-modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 -0.8rem;
+
+    > * {
+      margin: 0.8rem;
+
+      @media only screen and (max-width: 480px) {
+        width: 100%;
+      }
+    }
+  }
+}

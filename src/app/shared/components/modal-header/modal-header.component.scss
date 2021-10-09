@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss';
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  padding: 1.6rem;
+  border-bottom: 1px solid $border;
+
+  .modal-header-title {
+    flex: 1;
+    font-size: 1.8rem;
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

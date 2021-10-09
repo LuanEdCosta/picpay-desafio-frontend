@@ -21,6 +21,7 @@ type SortOrder = SORT_ORDER.ASC | SORT_ORDER.DESC
 })
 export class TasksComponent implements OnInit {
   tasks: Task[] = []
+  taskToDelete?: Task
 
   search: string = ''
   sortBy: string = ''
@@ -102,5 +103,19 @@ export class TasksComponent implements OnInit {
 
   getTotalOfPages(): number {
     return Math.floor(this.totalOfTasks / this.rowsPerPage)
+  }
+
+  setTaskToDelete(task: Task) {
+    this.taskToDelete = task
+  }
+
+  deleteTask() {
+    if (this.taskToDelete) {
+      const idToDelete = this.taskToDelete.id
+      this.tasksService.deleteTask(idToDelete).subscribe(() => {
+        this.taskToDelete = undefined
+        this.getTasks()
+      })
+    }
   }
 }
