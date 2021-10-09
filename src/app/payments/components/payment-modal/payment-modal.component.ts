@@ -8,7 +8,10 @@ import {
 } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 
-import { Payment, PaymentDataToSave } from '../../services/payments.service'
+import {
+  Payment,
+  PaymentDataToSave,
+} from '../../../shared/services/payments.service'
 
 @Component({
   selector: 'app-payment-modal',

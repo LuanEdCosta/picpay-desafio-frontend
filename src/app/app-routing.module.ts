@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
-import { LoginComponent } from './login/login.component'
-import { PaymentsComponent } from './payments/payments.component'
-import { AuthGuard } from './guards/auth.guard'
+import { AuthGuard } from './shared/guards/auth.guard'
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    loadChildren: () => {
+      return import('./login/login.module').then((m) => m.LoginModule)
+    },
+  },
   {
     path: '',
-    component: PaymentsComponent,
     canActivate: [AuthGuard],
+    loadChildren: () => {
+      return import('./payments/payments.module').then((m) => m.PaymentsModule)
+    },
   },
 ]
 
