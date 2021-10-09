@@ -2,6 +2,7 @@ import { Router } from '@angular/router'
 import { Component } from '@angular/core'
 
 import { AccountService } from '../shared/services/account.service'
+import { SessionService } from '../shared/services/session.service'
 
 enum LOGIN_ERROR_MESSAGES {
   EMPTY = 'Preencha todos os campos!',
@@ -20,7 +21,11 @@ export class LoginComponent {
   showPassword: boolean = false
   errorMessage: string = ''
 
-  constructor(private accountService: AccountService, private router: Router) {}
+  constructor(
+    private router: Router,
+    private accountService: AccountService,
+    private sessionService: SessionService,
+  ) {}
 
   canShowErrors(): boolean {
     return !this.email.trim() || !this.password.trim()
@@ -32,11 +37,11 @@ export class LoginComponent {
 
   login() {
     this.accountService.login(this.email, this.password).subscribe(
-      async (accounts) => {
+      (accounts) => {
         if (accounts.length) {
           const [foundAccount] = accounts
-          this.accountService.saveAccountSession(foundAccount)
-          await this.router.navigateByUrl('/tasks')
+          this.sessionService.createSession(foundAccount)
+          this.router.navigateByUrl('/')
         } else {
           this.errorMessage = LOGIN_ERROR_MESSAGES.USER_NOT_FOUND
         }
