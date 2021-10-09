@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { Task, TasksService } from '../shared/services/tasks.service'
+import {
+  Task,
+  TasksService,
+  TaskDataToSave,
+} from '../shared/services/tasks.service'
 
 type TableColumn = {
   key: string
@@ -22,6 +26,8 @@ type SortOrder = SORT_ORDER.ASC | SORT_ORDER.DESC
 export class TasksComponent implements OnInit {
   tasks: Task[] = []
   taskToDelete?: Task
+  paymentToEdit?: Task
+  isShowingPaymentModal: boolean = false
 
   search: string = ''
   sortBy: string = ''
@@ -81,8 +87,18 @@ export class TasksComponent implements OnInit {
     this.getTasks()
   }
 
-  addPayment() {
-    console.log('Add payments')
+  setIsAddingPayment() {
+    this.isShowingPaymentModal = true
+  }
+
+  setPaymentToEdit(payment: Task) {
+    this.paymentToEdit = payment
+    this.setIsAddingPayment()
+  }
+
+  closePaymentModal() {
+    this.isShowingPaymentModal = false
+    this.paymentToEdit = undefined
   }
 
   filterTasks(e: Event) {
@@ -102,7 +118,7 @@ export class TasksComponent implements OnInit {
   }
 
   getTotalOfPages(): number {
-    return Math.floor(this.totalOfTasks / this.rowsPerPage)
+    return Math.ceil(this.totalOfTasks / this.rowsPerPage)
   }
 
   setTaskToDelete(task: Task) {
@@ -117,5 +133,31 @@ export class TasksComponent implements OnInit {
         this.getTasks()
       })
     }
+  }
+
+  savePayment(payment: TaskDataToSave) {
+    this.tasksService.addTask(payment).subscribe(() => {
+      this.getTasks()
+      this.closePaymentModal()
+    })
+  }
+
+  editPayment(payment: TaskDataToSave) {
+    const paymentWithNewData = {
+      ...this.paymentToEdit,
+      ...payment,
+    }
+
+    this.tasksService.updateTask(paymentWithNewData).subscribe((task) => {
+      const foundIndex = this.tasks.findIndex(({ id }) => id === task.id)
+
+      if (foundIndex !== -1) {
+        const tasksClone = [...this.tasks]
+        tasksClone.splice(foundIndex, 1, task)
+        this.tasks = tasksClone
+      }
+
+      this.closePaymentModal()
+    })
   }
 }

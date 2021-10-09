@@ -1,7 +1,7 @@
 <app-modal-backdrop *ngIf="isOpen" (click)="closeAlertModal()">
   <app-modal-dialog size="small" (click)="stopPropagation($event)">
     <app-modal-header
-      [title]="title"
+      [modalTitle]="modalTitle"
       (closeModal)="closeAlertModal()"
     ></app-modal-header>
 

@@ -1,0 +1,80 @@
+<app-modal-backdrop *ngIf="isOpen" (click)="closePaymentModal()">
+  <app-modal-dialog size="large" (click)="stopPropagation($event)">
+    <app-modal-header
+      [modalTitle]="paymentToEdit ? 'Editar Pagamento' : 'Adicionar Pagamento'"
+      (closeModal)="closePaymentModal()"
+    ></app-modal-header>
+
+    <form
+      class="payment-modal"
+      [formGroup]="paymentForm"
+      (ngSubmit)="saveNewPayment()"
+    >
+      <div class="payment-modal-inputs">
+        <app-input label="Nome do Usuário *">
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Ex: Luan Eduardo"
+          />
+        </app-input>
+
+        <app-input label="Valor do Pagamento *">
+          <input
+            id="value"
+            type="number"
+            placeholder="Ex: 100"
+            formControlName="value"
+            min="0"
+          />
+        </app-input>
+
+        <app-input label="Data de Pagamento *">
+          <input
+            id="date"
+            type="text"
+            formControlName="date"
+            mask="00/00/0000 00:00"
+            placeholder="DD/MM/AAAA HH:MM"
+          />
+        </app-input>
+
+        <app-input label="Título do Usuário">
+          <input
+            id="title"
+            type="text"
+            formControlName="title"
+            placeholder="Ex: Professor"
+          />
+        </app-input>
+
+        <div class="payment-modal-inputs-checkbox">
+          <input id="isPayed" type="checkbox" formControlName="isPayed" />
+          <label for="isPayed">Já foi realizado o pagamento?</label>
+        </div>
+      </div>
+
+      <div class="payment-modal-errors" *ngIf="!!errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="payment-modal-actions">
+        <app-button
+          (click)="closePaymentModal()"
+          color="snow"
+          size="small"
+          [withIcon]="true"
+        >
+          <span>Cancelar</span>
+          <i-feather name="x"></i-feather>
+        </app-button>
+
+        <app-button type="submit" size="small" [withIcon]="true">
+          <span>Salvar</span>
+          <i-feather name="check"></i-feather>
+        </app-button>
+      </div>
+    </form>
+  </app-modal-dialog>
+</app-modal-backdrop>

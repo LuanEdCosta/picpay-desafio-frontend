@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { CommonModule, DatePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+
+import { NgxMaskModule } from 'ngx-mask'
 
 import { IconsModule } from './icons/icons.module'
 import { InputComponent } from './components/input/input.component'
@@ -12,6 +15,7 @@ import { ModalBackdropComponent } from './components/modal-backdrop/modal-backdr
 import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component'
 import { AlertModalComponent } from './components/alert-modal/alert-modal.component'
 import { ModalHeaderComponent } from './components/modal-header/modal-header.component'
+import { PaymentModalComponent } from './components/payment-modal/payment-modal.component'
 
 @NgModule({
   declarations: [
@@ -24,10 +28,20 @@ import { ModalHeaderComponent } from './components/modal-header/modal-header.com
     ModalDialogComponent,
     AlertModalComponent,
     ModalHeaderComponent,
+    PaymentModalComponent,
   ],
-  imports: [CommonModule, IconsModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IconsModule,
+    NgxMaskModule.forRoot({ dropSpecialCharacters: false }),
+  ],
+  providers: [DatePipe],
   exports: [
     IconsModule,
+    NgxMaskModule,
     InputComponent,
     ButtonComponent,
     HeaderComponent,
@@ -37,6 +51,7 @@ import { ModalHeaderComponent } from './components/modal-header/modal-header.com
     ModalDialogComponent,
     AlertModalComponent,
     ModalHeaderComponent,
+    PaymentModalComponent,
   ],
 })
 export class SharedModule {}

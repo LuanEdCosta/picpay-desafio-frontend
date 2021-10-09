@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 })
 export class AlertModalComponent {
   @Input() isOpen: boolean = false
-  @Input() title: string = ''
+  @Input() modalTitle: string = ''
   @Output() closeModal: EventEmitter<undefined> = new EventEmitter()
 
   constructor() {}

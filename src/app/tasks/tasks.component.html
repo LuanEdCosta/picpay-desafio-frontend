@@ -4,7 +4,7 @@
   <div class="content">
     <div class="content-header">
       <h1 class="content-title">Meus Pagamentos</h1>
-      <app-button (click)="addPayment()" size="small" [withIcon]="true">
+      <app-button (click)="setIsAddingPayment()" size="small" [withIcon]="true">
         <span>Adicionar Pagamento</span>
         <i-feather name="plus"></i-feather>
       </app-button>
@@ -111,7 +111,7 @@
             </td>
 
             <td class="content-data-table-body-row-actions">
-              <app-icon-button>
+              <app-icon-button (click)="setPaymentToEdit(task)">
                 <i-feather name="edit-2"></i-feather>
               </app-icon-button>
 
@@ -127,7 +127,7 @@
 </div>
 
 <app-alert-modal
-  title="Excluir Pagamento"
+  modalTitle="Excluir Pagamento"
   [isOpen]="!!this.taskToDelete"
   (closeModal)="setTaskToDelete(undefined)"
 >
@@ -144,7 +144,7 @@
 
     <div class="delete-payment-modal-data">
       <strong>Valor:</strong>
-      <span>{{ taskToDelete?.value | date: 'd MMM y':'':'pt-BR' }}</span>
+      <span>R$ {{ taskToDelete?.value | number: '':'pt-BR' }}</span>
     </div>
 
     <div class="delete-payment-modal-actions">
@@ -170,3 +170,10 @@
     </div>
   </div>
 </app-alert-modal>
+
+<app-payment-modal
+  [isOpen]="isShowingPaymentModal"
+  (closeModal)="closePaymentModal()"
+  [paymentToEdit]="paymentToEdit"
+  (savePayment)="paymentToEdit ? editPayment($event) : savePayment($event)"
+></app-payment-modal>

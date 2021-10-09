@@ -16,6 +16,7 @@ import {
   CheckCircle,
   XCircle,
   X,
+  Check,
 } from 'angular-feather/icons'
 
 const icons = {
@@ -34,6 +35,7 @@ const icons = {
   CheckCircle,
   XCircle,
   X,
+  Check,
 }
 
 @NgModule({

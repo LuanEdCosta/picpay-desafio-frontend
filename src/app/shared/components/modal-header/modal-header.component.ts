@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
   styleUrls: ['./modal-header.component.scss'],
 })
 export class ModalHeaderComponent {
-  @Input() title: string = ''
+  @Input() modalTitle: string = ''
   @Output() closeModal: EventEmitter<undefined> = new EventEmitter()
 
   constructor() {}
