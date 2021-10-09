@@ -10,11 +10,11 @@ import { AppRoutingModule } from './app-routing.module'
 
 import { SharedModule } from './shared/shared.module'
 import { LoginComponent } from './login/login.component'
-import { TasksComponent } from './tasks/tasks.component'
+import { PaymentsComponent } from './payments/payments.component'
 
 registerLocaleData(localePT)
 @NgModule({
-  declarations: [AppComponent, LoginComponent, TasksComponent],
+  declarations: [AppComponent, LoginComponent, PaymentsComponent],
   imports: [
     BrowserModule,
     FormsModule,

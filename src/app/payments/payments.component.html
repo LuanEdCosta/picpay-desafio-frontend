@@ -14,7 +14,7 @@
       <div class="content-data-header">
         <form
           class="content-data-header-filters"
-          (submit)="filterTasks($event)"
+          (submit)="filterPayments($event)"
         >
           <app-input color="background" size="small">
             <input
@@ -86,36 +86,39 @@
         </thead>
 
         <tbody class="content-data-table-body">
-          <tr class="content-data-table-body-row" *ngFor="let task of tasks">
+          <tr
+            class="content-data-table-body-row"
+            *ngFor="let payment of payments"
+          >
             <td class="content-data-table-body-row-col">
-              <div>{{ task.name }}</div>
-              <div>@{{ task.username }}</div>
+              <div>{{ payment.name }}</div>
+              <div>@{{ payment.username }}</div>
             </td>
 
-            <td class="content-data-table-body-row-col">{{ task.title }}</td>
+            <td class="content-data-table-body-row-col">{{ payment.title }}</td>
 
             <td class="content-data-table-body-row-col">
-              <div>{{ task.date | date: 'd MMM y':'':'pt-BR' }}</div>
-              <div>{{ task.date | date: 'shortTime':'':'pt-BR' }}</div>
+              <div>{{ payment.date | date: 'd MMM y':'':'pt-BR' }}</div>
+              <div>{{ payment.date | date: 'shortTime':'':'pt-BR' }}</div>
             </td>
 
             <td class="content-data-table-body-row-col">
-              R$ {{ task.value | number: '':'pt-BR' }}
+              R$ {{ payment.value | number: '':'pt-BR' }}
             </td>
 
             <td class="content-data-table-body-row-col col-center">
               <i-feather
-                [ngClass]="task.isPayed ? 'paid' : 'not-paid'"
-                [name]="task.isPayed ? 'check-circle' : 'x-circle'"
+                [ngClass]="payment.isPayed ? 'paid' : 'not-paid'"
+                [name]="payment.isPayed ? 'check-circle' : 'x-circle'"
               ></i-feather>
             </td>
 
             <td class="content-data-table-body-row-actions">
-              <app-icon-button (click)="setPaymentToEdit(task)">
+              <app-icon-button (click)="setPaymentToEdit(payment)">
                 <i-feather name="edit-2"></i-feather>
               </app-icon-button>
 
-              <app-icon-button (click)="setTaskToDelete(task)">
+              <app-icon-button (click)="setPaymentToDelete(payment)">
                 <i-feather name="trash"></i-feather>
               </app-icon-button>
             </td>
@@ -128,28 +131,28 @@
 
 <app-alert-modal
   modalTitle="Excluir Pagamento"
-  [isOpen]="!!this.taskToDelete"
-  (closeModal)="setTaskToDelete(undefined)"
+  [isOpen]="!!this.paymentToDelete"
+  (closeModal)="setPaymentToDelete(undefined)"
 >
   <div class="delete-payment-modal">
     <div class="delete-payment-modal-data">
       <strong>Usuário:</strong>
-      <span>{{ taskToDelete?.name }}</span>
+      <span>{{ paymentToDelete?.name }}</span>
     </div>
 
     <div class="delete-payment-modal-data">
       <strong>Data:</strong>
-      <span>{{ taskToDelete?.date | date: 'd MMM y':'':'pt-BR' }}</span>
+      <span>{{ paymentToDelete?.date | date: 'd MMM y':'':'pt-BR' }}</span>
     </div>
 
     <div class="delete-payment-modal-data">
       <strong>Valor:</strong>
-      <span>R$ {{ taskToDelete?.value | number: '':'pt-BR' }}</span>
+      <span>R$ {{ paymentToDelete?.value | number: '':'pt-BR' }}</span>
     </div>
 
     <div class="delete-payment-modal-actions">
       <app-button
-        (click)="setTaskToDelete(undefined)"
+        (click)="setPaymentToDelete(undefined)"
         color="snow"
         size="small"
         [withIcon]="true"
@@ -159,7 +162,7 @@
       </app-button>
 
       <app-button
-        (click)="deleteTask()"
+        (click)="deletePayment()"
         color="danger"
         size="small"
         [withIcon]="true"

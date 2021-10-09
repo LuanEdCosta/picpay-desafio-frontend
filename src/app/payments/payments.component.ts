@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import {
-  Task,
-  TasksService,
-  TaskDataToSave,
-} from '../shared/services/tasks.service'
+  Payment,
+  PaymentsService,
+  PaymentDataToSave,
+} from '../shared/services/payments.service'
 
 type TableColumn = {
   key: string
@@ -19,14 +19,14 @@ enum SORT_ORDER {
 type SortOrder = SORT_ORDER.ASC | SORT_ORDER.DESC
 
 @Component({
-  selector: 'app-tasks',
-  templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.scss'],
+  selector: 'app-payments',
+  templateUrl: './payments.component.html',
+  styleUrls: ['./payments.component.scss'],
 })
-export class TasksComponent implements OnInit {
-  tasks: Task[] = []
-  taskToDelete?: Task
-  paymentToEdit?: Task
+export class PaymentsComponent implements OnInit {
+  payments: Payment[] = []
+  paymentToDelete?: Payment
+  paymentToEdit?: Payment
   isShowingPaymentModal: boolean = false
 
   search: string = ''
@@ -34,7 +34,7 @@ export class TasksComponent implements OnInit {
   sortOrder?: SortOrder
   rowsPerPage: number = 5
   currentPage: number = 1
-  totalOfTasks: number = 0
+  totalOfPayments: number = 0
 
   tableColumns: TableColumn[] = [
     { key: 'name', label: 'Usuário', centered: false },
@@ -46,11 +46,11 @@ export class TasksComponent implements OnInit {
 
   rowsPerPageOptions = [5, 10, 15, 20, 25]
 
-  constructor(private tasksService: TasksService) {}
+  constructor(private paymentsService: PaymentsService) {}
 
-  getTasks() {
-    this.tasksService
-      .getTasks({
+  getPayments() {
+    this.paymentsService
+      .getPayments({
         limit: this.rowsPerPage,
         search: this.search,
         page: this.currentPage,
@@ -58,8 +58,10 @@ export class TasksComponent implements OnInit {
         sortOrder: this.sortOrder,
       })
       .subscribe((response) => {
-        this.tasks = response.body
-        this.totalOfTasks = Number(response.headers.get('X-Total-Count') || 0)
+        this.payments = response.body
+        this.totalOfPayments = Number(
+          response.headers.get('X-Total-Count') || 0,
+        )
       })
   }
 
@@ -80,18 +82,18 @@ export class TasksComponent implements OnInit {
       this.sortBy = ''
     }
 
-    this.getTasks()
+    this.getPayments()
   }
 
   ngOnInit(): void {
-    this.getTasks()
+    this.getPayments()
   }
 
   setIsAddingPayment() {
     this.isShowingPaymentModal = true
   }
 
-  setPaymentToEdit(payment: Task) {
+  setPaymentToEdit(payment: Payment) {
     this.paymentToEdit = payment
     this.setIsAddingPayment()
   }
@@ -101,63 +103,67 @@ export class TasksComponent implements OnInit {
     this.paymentToEdit = undefined
   }
 
-  filterTasks(e: Event) {
+  filterPayments(e: Event) {
     e.preventDefault()
     this.currentPage = 1
-    this.getTasks()
+    this.getPayments()
   }
 
   changePage(page: number) {
     this.currentPage = page
-    this.getTasks()
+    this.getPayments()
   }
 
   changeRowsPerPage() {
     this.currentPage = 1
-    this.getTasks()
+    this.getPayments()
   }
 
   getTotalOfPages(): number {
-    return Math.ceil(this.totalOfTasks / this.rowsPerPage)
+    return Math.ceil(this.totalOfPayments / this.rowsPerPage)
   }
 
-  setTaskToDelete(task: Task) {
-    this.taskToDelete = task
+  setPaymentToDelete(payment: Payment) {
+    this.paymentToDelete = payment
   }
 
-  deleteTask() {
-    if (this.taskToDelete) {
-      const idToDelete = this.taskToDelete.id
-      this.tasksService.deleteTask(idToDelete).subscribe(() => {
-        this.taskToDelete = undefined
-        this.getTasks()
+  deletePayment() {
+    if (this.paymentToDelete) {
+      const idToDelete = this.paymentToDelete.id
+      this.paymentsService.deletePayment(idToDelete).subscribe(() => {
+        this.paymentToDelete = undefined
+        this.getPayments()
       })
     }
   }
 
-  savePayment(payment: TaskDataToSave) {
-    this.tasksService.addTask(payment).subscribe(() => {
-      this.getTasks()
+  savePayment(payment: PaymentDataToSave) {
+    this.paymentsService.addPayment(payment).subscribe(() => {
+      this.getPayments()
       this.closePaymentModal()
     })
   }
 
-  editPayment(payment: TaskDataToSave) {
+  editPayment(payment: PaymentDataToSave) {
     const paymentWithNewData = {
       ...this.paymentToEdit,
       ...payment,
     }
 
-    this.tasksService.updateTask(paymentWithNewData).subscribe((task) => {
-      const foundIndex = this.tasks.findIndex(({ id }) => id === task.id)
+    this.paymentsService
+      .updatePayment(paymentWithNewData)
+      .subscribe((payment) => {
+        const indexToUpdate = this.payments.findIndex(
+          ({ id }) => id === payment.id,
+        )
 
-      if (foundIndex !== -1) {
-        const tasksClone = [...this.tasks]
-        tasksClone.splice(foundIndex, 1, task)
-        this.tasks = tasksClone
-      }
+        if (indexToUpdate !== -1) {
+          const paymentsClone = [...this.payments]
+          paymentsClone.splice(indexToUpdate, 1, payment)
+          this.payments = paymentsClone
+        }
 
-      this.closePaymentModal()
-    })
+        this.closePaymentModal()
+      })
   }
 }

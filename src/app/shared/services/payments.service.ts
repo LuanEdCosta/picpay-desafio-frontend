@@ -2,7 +2,7 @@ import { Observable } from 'rxjs'
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpResponse } from '@angular/common/http'
 
-type GetTasksOptions = {
+type GetPaymentsOptions = {
   limit: number
   page?: number
   search?: string
@@ -18,7 +18,7 @@ type Filters = {
   q?: string
 }
 
-export type Task = {
+export type Payment = {
   id: number
   name: string
   username: string
@@ -29,16 +29,16 @@ export type Task = {
   isPayed: boolean
 }
 
-export type TaskDataToSave = Pick<
-  Task,
+export type PaymentDataToSave = Pick<
+  Payment,
   'name' | 'value' | 'date' | 'title' | 'isPayed'
 >
 
 @Injectable({
   providedIn: 'root',
 })
-export class TasksService {
-  private baseUrl = 'http://localhost:3000/tasks'
+export class PaymentsService {
+  private baseUrl = 'http://localhost:3000/payments'
 
   constructor(private http: HttpClient) {}
 
@@ -61,36 +61,36 @@ export class TasksService {
     return ''
   }
 
-  getTasks({
+  getPayments({
     page,
     limit,
     search,
     sortBy,
     sortOrder,
-  }: GetTasksOptions): Observable<HttpResponse<Task[]>> {
+  }: GetPaymentsOptions): Observable<HttpResponse<Payment[]>> {
     const filters: Filters = { _limit: String(limit) }
     if (page) filters._page = String(page)
     if (search) filters.q = search
     if (sortBy) filters._sort = sortBy
     if (sortOrder) filters._order = sortOrder
     const params = new URLSearchParams(filters)
-    return this.http.get<Task[]>(`${this.baseUrl}?${params}`, {
+    return this.http.get<Payment[]>(`${this.baseUrl}?${params}`, {
       observe: 'response',
     })
   }
 
-  deleteTask(id: number) {
+  deletePayment(id: number) {
     return this.http.delete(`${this.baseUrl}/${id}`)
   }
 
-  addTask(taskData: TaskDataToSave): Observable<Task> {
-    return this.http.post<Task>(this.baseUrl, {
-      ...taskData,
-      username: this.getUserName(taskData.name),
+  addPayment(paymentData: PaymentDataToSave): Observable<Payment> {
+    return this.http.post<Payment>(this.baseUrl, {
+      ...paymentData,
+      username: this.getUserName(paymentData.name),
     })
   }
 
-  updateTask(task: Task): Observable<Task> {
-    return this.http.patch<Task>(`${this.baseUrl}/${task.id}`, task)
+  updatePayment(payment: Payment): Observable<Payment> {
+    return this.http.patch<Payment>(`${this.baseUrl}/${payment.id}`, payment)
   }
 }

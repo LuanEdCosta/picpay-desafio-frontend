@@ -8,7 +8,7 @@ import {
 } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 
-import { Task, TaskDataToSave } from '../../services/tasks.service'
+import { Payment, PaymentDataToSave } from '../../services/payments.service'
 
 @Component({
   selector: 'app-payment-modal',
@@ -17,10 +17,10 @@ import { Task, TaskDataToSave } from '../../services/tasks.service'
 })
 export class PaymentModalComponent implements OnChanges {
   @Input() isOpen: boolean = false
-  @Input() paymentToEdit?: Task
+  @Input() paymentToEdit?: Payment
 
   @Output() closeModal: EventEmitter<undefined> = new EventEmitter()
-  @Output() savePayment: EventEmitter<TaskDataToSave> = new EventEmitter()
+  @Output() savePayment: EventEmitter<PaymentDataToSave> = new EventEmitter()
 
   errorMessage: string = ''
   paymentForm = new FormGroup({
@@ -91,9 +91,9 @@ export class PaymentModalComponent implements OnChanges {
     this.errorMessage = ''
 
     if (this.paymentForm.valid) {
-      const taskData = this.paymentForm.value
-      taskData.date = this.getFormattedDate(taskData.date)
-      this.savePayment.emit(taskData)
+      const paymentData = this.paymentForm.value
+      paymentData.date = this.getFormattedDate(paymentData.date)
+      this.savePayment.emit(paymentData)
     } else {
       this.showErrors()
     }
