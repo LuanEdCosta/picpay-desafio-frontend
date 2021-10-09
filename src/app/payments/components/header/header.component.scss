@@ -1,21 +1,23 @@
 @import '../../../styles/variables.scss';
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  height: 9rem;
-  padding: 0 5%;
-  background: $darkest-accent;
+:host {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 9rem;
+    padding: 0 5%;
+    background: $darkest-accent;
 
-  .logo {
-    max-width: 100%;
-  }
+    .header-logo {
+      max-width: 100%;
+    }
 
-  .user {
-    width: 4.5rem;
-    height: 4.5rem;
-    border-radius: 100%;
+    .header-user {
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 100%;
+    }
   }
 }

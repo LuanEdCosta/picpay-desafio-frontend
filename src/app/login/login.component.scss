@@ -1,6 +1,6 @@
 @import '../styles/variables.scss';
 
-.container {
+:host {
   display: flex;
   align-items: stretch;
   min-height: 100vh;

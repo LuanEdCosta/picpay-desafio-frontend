@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+
 import { IconButtonComponent } from './icon-button.component'
 
 describe('IconButtonComponent', () => {

@@ -1,63 +1,61 @@
-<div class="container">
-  <div class="login">
-    <div class="login-content">
-      <img
-        class="login-content-logo"
-        src="assets/ColorfulLogo.svg"
-        alt="PayFriends logo"
-      />
-
-      <h1 class="login-content-title">Bem-vindo de volta!</h1>
-
-      <form class="login-content-form" (submit)="onSubmit($event)">
-        <app-input label="Email" color="snow" labelFor="email">
-          <input
-            id="email"
-            type="email"
-            autocomplete="email"
-            placeholder="Digite seu endereço de email"
-            [(ngModel)]="email"
-            [ngModelOptions]="{ standalone: true }"
-          />
-        </app-input>
-
-        <app-input label="Senha" color="snow" labelFor="password">
-          <input
-            id="password"
-            autocomplete="false"
-            autocapitalize="false"
-            placeholder="Digite a sua senha"
-            [(ngModel)]="password"
-            [ngModelOptions]="{ standalone: true }"
-            [type]="showPassword ? 'text' : 'password'"
-          />
-
-          <app-icon-button
-            class="login-content-form-show-password"
-            (click)="togglePassword()"
-            right
-          >
-            <i-feather [name]="showPassword ? 'eye-off' : 'eye'"></i-feather>
-          </app-icon-button>
-        </app-input>
-
-        <div class="login-content-form-error" *ngIf="!!errorMessage">
-          {{ errorMessage }}
-        </div>
-
-        <app-button type="submit" [withIcon]="true">
-          <span>Entrar</span>
-          <i-feather name="log-in"></i-feather>
-        </app-button>
-      </form>
-    </div>
-  </div>
-
-  <div class="svg">
+<div class="login">
+  <div class="login-content">
     <img
-      class="svg-image"
-      src="assets/ManDoingOnlinePayment.svg"
-      alt="Homem fazendo pagamento online"
+      class="login-content-logo"
+      src="assets/ColorfulLogo.svg"
+      alt="PayFriends logo"
     />
+
+    <h1 class="login-content-title">Bem-vindo de volta!</h1>
+
+    <form class="login-content-form" (submit)="onSubmit($event)">
+      <app-input label="Email" color="snow" labelFor="email">
+        <input
+          id="email"
+          type="email"
+          autocomplete="email"
+          placeholder="Digite seu endereço de email"
+          [(ngModel)]="email"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </app-input>
+
+      <app-input label="Senha" color="snow" labelFor="password">
+        <input
+          id="password"
+          autocomplete="false"
+          autocapitalize="false"
+          placeholder="Digite a sua senha"
+          [(ngModel)]="password"
+          [ngModelOptions]="{ standalone: true }"
+          [type]="showPassword ? 'text' : 'password'"
+        />
+
+        <app-icon-button
+          class="login-content-form-show-password"
+          (click)="togglePassword()"
+          right
+        >
+          <i-feather [name]="showPassword ? 'eye-off' : 'eye'"></i-feather>
+        </app-icon-button>
+      </app-input>
+
+      <div class="login-content-form-error" *ngIf="!!errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <app-button type="submit" [withIcon]="true">
+        <span>Entrar</span>
+        <i-feather name="log-in"></i-feather>
+      </app-button>
+    </form>
   </div>
+</div>
+
+<div class="svg">
+  <img
+    class="svg-image"
+    src="assets/ManDoingOnlinePayment.svg"
+    alt="Homem fazendo pagamento online"
+  />
 </div>

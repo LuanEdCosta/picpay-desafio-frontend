@@ -1,48 +1,50 @@
 @import '../../../styles/variables.scss';
 
-.payment-modal {
-  .payment-modal-inputs {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.6rem 0.8rem 0.8rem 0.8rem;
+:host {
+  .payment-modal {
+    .payment-modal-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem 0.8rem 0.8rem 0.8rem;
 
-    > * {
-      flex: 1 45%;
-      min-width: 25rem;
-      margin: 1.2rem 0.8rem;
-    }
-
-    .payment-modal-inputs-checkbox {
       > * {
-        cursor: pointer;
+        flex: 1 45%;
+        min-width: 25rem;
+        margin: 1.2rem 0.8rem;
       }
 
-      > :first-child {
-        margin-right: 0.8rem;
+      .payment-modal-inputs-checkbox {
+        > * {
+          cursor: pointer;
+        }
+
+        > :first-child {
+          margin-right: 0.8rem;
+        }
       }
     }
-  }
 
-  .payment-modal-errors {
-    color: $danger;
-    padding: 0 1.6rem;
-  }
+    .payment-modal-errors {
+      color: $danger;
+      padding: 0 1.6rem;
+    }
 
-  .payment-modal-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0.8rem 1.6rem;
-    margin: 0 -0.8rem;
+    .payment-modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0.8rem 1.6rem;
+      margin: 0 -0.8rem;
 
-    > * {
-      margin: 0.8rem;
+      > * {
+        margin: 0.8rem;
 
-      @media only screen and (max-width: 480px) {
-        width: 100%;
+        @media only screen and (max-width: 480px) {
+          width: 100%;
+        }
       }
     }
   }

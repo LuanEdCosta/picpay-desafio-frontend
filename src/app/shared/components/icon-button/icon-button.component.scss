@@ -1,21 +1,23 @@
 @import '../../../styles/variables.scss';
 
-.icon-button {
-  height: 4rem;
-  width: 4rem;
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: color 0.2s ease-in-out;
-  background: transparent;
-  color: $secondary-text;
-  outline: none;
-  border: none;
+:host {
+  .icon-button {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    background: transparent;
+    color: $secondary-text;
+    outline: none;
+    border: none;
 
-  &:hover,
-  &:focus {
-    color: $accent;
+    &:hover,
+    &:focus {
+      color: $accent;
+    }
   }
 }
