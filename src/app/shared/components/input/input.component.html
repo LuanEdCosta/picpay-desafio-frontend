@@ -1,7 +1,11 @@
 <div class="container">
-  <div class="label background-color-{{ color }}" *ngIf="!!label">
+  <label
+    class="label background-color-{{ color }}"
+    [for]="labelFor"
+    *ngIf="!!label"
+  >
     {{ label }}
-  </div>
+  </label>
 
   <div [ngClass]="{ content: true, 'content-small': size === 'small' }">
     <ng-content select="[left]"></ng-content>

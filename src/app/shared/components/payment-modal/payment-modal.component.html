@@ -11,7 +11,7 @@
       (ngSubmit)="saveNewPayment()"
     >
       <div class="payment-modal-inputs">
-        <app-input label="Nome do Usuário (Obrigatório)">
+        <app-input label="Nome do Usuário (Obrigatório)" labelFor="name">
           <input
             id="name"
             type="text"
@@ -20,7 +20,7 @@
           />
         </app-input>
 
-        <app-input label="Valor do Pagamento (Obrigatório)">
+        <app-input label="Valor do Pagamento (Obrigatório)" labelFor="value">
           <input
             id="value"
             type="number"
@@ -30,7 +30,7 @@
           />
         </app-input>
 
-        <app-input label="Data de Pagamento (Obrigatório)">
+        <app-input label="Data de Pagamento (Obrigatório)" labelFor="date">
           <input
             id="date"
             type="text"
@@ -40,7 +40,7 @@
           />
         </app-input>
 
-        <app-input label="Título do Usuário">
+        <app-input label="Título do Usuário" labelFor="title">
           <input
             id="title"
             type="text"

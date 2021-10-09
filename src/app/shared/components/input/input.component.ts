@@ -10,8 +10,9 @@ type InputSizes = 'default' | 'small'
 })
 export class InputComponent {
   @Input() label: string = ''
-  @Input() color: InputColors = 'background'
+  @Input() labelFor?: string
   @Input() size: InputSizes = 'default'
+  @Input() color: InputColors = 'background'
 
   constructor() {}
 }

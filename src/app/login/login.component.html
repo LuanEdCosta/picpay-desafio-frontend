@@ -10,8 +10,9 @@
       <h1 class="login-content-title">Bem-vindo de volta!</h1>
 
       <form class="login-content-form" (submit)="onSubmit($event)">
-        <app-input label="Email" color="snow">
+        <app-input label="Email" color="snow" labelFor="email">
           <input
+            id="email"
             type="email"
             autocomplete="email"
             placeholder="Digite seu endereço de email"
@@ -20,9 +21,11 @@
           />
         </app-input>
 
-        <app-input label="Senha" color="snow">
+        <app-input label="Senha" color="snow" labelFor="password">
           <input
-            autocomplete="current-password"
+            id="password"
+            autocomplete="false"
+            autocapitalize="false"
             placeholder="Digite a sua senha"
             [(ngModel)]="password"
             [ngModelOptions]="{ standalone: true }"
