@@ -11,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 import {
   Payment,
   PaymentDataToSave,
-} from '../../../shared/services/payments.service'
+} from '@app/shared/services/payments.service'
 
 @Component({
   selector: 'app-payment-modal',

@@ -1,8 +1,9 @@
-import { Observable } from 'rxjs'
 import { Injectable } from '@angular/core'
 import { UrlTree, CanActivate, Router } from '@angular/router'
 
-import { SessionService } from '../services/session.service'
+import { Observable } from 'rxjs'
+
+import { SessionService } from '@app/shared/services/session.service'
 
 @Injectable({
   providedIn: 'root',

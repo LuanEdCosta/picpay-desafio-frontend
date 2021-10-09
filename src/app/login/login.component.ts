@@ -1,8 +1,8 @@
 import { Router } from '@angular/router'
 import { Component } from '@angular/core'
 
-import { AccountService } from '../shared/services/account.service'
-import { SessionService } from '../shared/services/session.service'
+import { AccountService } from '@app/shared/services/account.service'
+import { SessionService } from '@app/shared/services/session.service'
 
 enum LOGIN_ERROR_MESSAGES {
   EMPTY = 'Preencha todos os campos!',

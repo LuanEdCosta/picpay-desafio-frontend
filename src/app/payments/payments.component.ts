@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core'
+
 import {
   Payment,
   PaymentsService,
   PaymentDataToSave,
-} from '../shared/services/payments.service'
+} from '@app/shared/services/payments.service'
 
 type TableColumn = {
   key: string
