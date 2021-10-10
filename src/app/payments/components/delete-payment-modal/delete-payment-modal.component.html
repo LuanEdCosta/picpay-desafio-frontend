@@ -1,0 +1,44 @@
+<app-alert-modal
+  modalTitle="Excluir Pagamento"
+  [isOpen]="!!paymentToDelete"
+  (closeModal)="emitCloseModal()"
+>
+  <div class="delete-payment-modal">
+    <div class="delete-payment-modal-data">
+      <strong>Usuário:</strong>
+      <span>{{ paymentToDelete?.name }}</span>
+    </div>
+
+    <div class="delete-payment-modal-data">
+      <strong>Data:</strong>
+      <span>{{ paymentToDelete?.date | date: 'd MMM y':'':'pt-BR' }}</span>
+    </div>
+
+    <div class="delete-payment-modal-data">
+      <strong>Valor:</strong>
+      <span>R$ {{ paymentToDelete?.value | number: '':'pt-BR' }}</span>
+    </div>
+
+    <div class="delete-payment-modal-actions">
+      <app-button
+        (click)="emitCloseModal()"
+        color="snow"
+        size="small"
+        [withIcon]="true"
+      >
+        <span>Cancelar</span>
+        <i-feather name="x"></i-feather>
+      </app-button>
+
+      <app-button
+        (click)="emitDeletePayment()"
+        color="danger"
+        size="small"
+        [withIcon]="true"
+      >
+        <span>Excluir</span>
+        <i-feather name="trash"></i-feather>
+      </app-button>
+    </div>
+  </div>
+</app-alert-modal>
