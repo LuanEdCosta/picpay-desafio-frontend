@@ -22,4 +22,10 @@ export class SessionService {
     const session = localStorage.getItem(this.SESSION_KEY)
     return !!session
   }
+
+  getSession(): Account | undefined {
+    const session = localStorage.getItem(this.SESSION_KEY)
+    if (!session) return
+    return JSON.parse(session)
+  }
 }

@@ -62,4 +62,15 @@
       background: red;
     }
   }
+
+  .button-white {
+    background: white;
+    color: $primary-text;
+    transition: background 0.2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background: $snow;
+    }
+  }
 }

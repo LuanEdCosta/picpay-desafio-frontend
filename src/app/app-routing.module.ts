@@ -20,6 +20,15 @@ const routes: Routes = [
     },
   },
   {
+    path: 'user-profile',
+    canActivate: [AuthGuard],
+    loadChildren: () => {
+      return import('./user-profile/user-profile.module').then(
+        (m) => m.UserProfileModule,
+      )
+    },
+  },
+  {
     /*
       We have two options here: redirect to home or show the error 404 page.
       In the future, if some routes were removed this page can help the user understands what happened.

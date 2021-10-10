@@ -19,6 +19,10 @@ import {
   X,
   Check,
   Frown,
+  LogOut,
+  Lock,
+  BarChart2,
+  CreditCard,
 } from 'angular-feather/icons'
 
 const icons = {
@@ -39,6 +43,10 @@ const icons = {
   X,
   Check,
   Frown,
+  LogOut,
+  Lock,
+  BarChart2,
+  CreditCard,
 }
 
 @NgModule({

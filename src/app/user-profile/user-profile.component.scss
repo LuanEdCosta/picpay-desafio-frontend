@@ -1,0 +1,95 @@
+@import '../styles/variables.scss';
+
+:host {
+  $header-height: 16rem;
+  $image-size: 20rem;
+
+  .user-profile {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .user-profile-header {
+      width: 100%;
+      height: $header-height;
+      background: $darkest-accent;
+      display: flex;
+      padding: 0.8rem;
+
+      .user-profile-header-back {
+        align-self: flex-start;
+      }
+    }
+
+    .user-profile-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 110rem;
+      padding: 0 1.6rem;
+      margin: auto;
+
+      .user-profile-content-data {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+
+        .user-profile-content-data-image {
+          position: absolute;
+          height: $image-size;
+          width: $image-size;
+          top: -($image-size / 2);
+          left: 50%;
+          transform: translateX(-50%);
+          border-radius: 100%;
+          border: 0.2rem solid $darkest-accent;
+          background: $background;
+        }
+
+        .user-profile-content-data-name {
+          margin-top: ($image-size / 2) + 2.4rem;
+          margin-bottom: 0.8rem;
+          font-size: 3.2rem;
+          font-weight: bold;
+          text-transform: capitalize;
+        }
+
+        .user-profile-content-data-email {
+          margin-bottom: 2.4rem;
+          color: $secondary-text;
+        }
+      }
+
+      .user-profile-content-options {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        margin: 0 -0.8rem;
+
+        > * {
+          flex: 1 40%;
+          margin: 0.8rem;
+          min-width: 25rem;
+        }
+      }
+
+      .user-profile-content-actions {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 1.6rem 0.8rem;
+        margin-bottom: 0.8rem;
+
+        .user-profile-content-actions-logout {
+          flex: 1;
+          max-width: 40rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+<div class="user-profile">
+  <div class="user-profile-header">
+    <app-button
+      class="user-profile-header-back"
+      size="small"
+      color="white"
+      (click)="goBack()"
+    >
+      <i-feather name="chevron-left"></i-feather>
+    </app-button>
+  </div>
+
+  <div class="user-profile-content">
+    <div class="user-profile-content-data">
+      <img
+        class="user-profile-content-data-image"
+        alt="Foto de Perfil"
+        [src]="session?.image"
+      />
+
+      <div class="user-profile-content-data-name">{{ session?.name }}</div>
+      <div class="user-profile-content-data-email">{{ session?.email }}</div>
+    </div>
+
+    <div class="user-profile-content-options">
+      <app-profile-option
+        iconName="edit-2"
+        optionTitle="Alterar Dados Pessoais"
+        subtitle="Mude seu nome, email, foto de perfil e outras informações da sua conta."
+        actionText="Alterar Dados"
+      >
+      </app-profile-option>
+
+      <app-profile-option
+        iconName="lock"
+        optionTitle="Segurança da Conta"
+        subtitle="Faça o checkup de segurança para manter a conta segura."
+        actionText="Ir para Segurança da Conta"
+      >
+      </app-profile-option>
+
+      <app-profile-option
+        iconName="bar-chart-2"
+        optionTitle="Minhas Estatísticas"
+        subtitle="Veja estatísticas úteis sobre os pagamentos que efetua no Pay Friends."
+        actionText="Ver Detalhes"
+      >
+      </app-profile-option>
+
+      <app-profile-option
+        iconName="credit-card"
+        optionTitle="Meios de Pagamento"
+        subtitle="Adicione, modifique ou remova meios de pagamentos da sua conta."
+        actionText="Ir para Meios de Pagamento"
+      >
+      </app-profile-option>
+    </div>
+
+    <div class="user-profile-content-actions">
+      <app-button
+        class="user-profile-content-actions-logout"
+        color="danger"
+        [withIcon]="true"
+        (click)="logout()"
+      >
+        <span>Sair da Conta</span>
+        <i-feather name="log-out"></i-feather>
+      </app-button>
+    </div>
+  </div>
+</div>

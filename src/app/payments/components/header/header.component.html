@@ -1,4 +1,7 @@
 <div class="header">
   <img class="header-logo" src="assets/WhiteLogo.svg" alt="PayFriends Logo" />
-  <img class="header-user" src="assets/User.jpg" alt="Usuário" />
+
+  <a [routerLink]="['/user-profile']">
+    <img class="header-user" [src]="session?.image" alt="Foto de Perfil" />
+  </a>
 </div>
