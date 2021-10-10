@@ -7,6 +7,7 @@ import {
   Output,
 } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { paymentDateValidator } from '@app/payments/validators/payment-date.validator'
 
 import {
   Payment,
@@ -19,6 +20,7 @@ enum ERROR_MESSAGES {
   VALUE_MIN_VALUE = 'O valor do pagamento não pode ser um número negativo',
   DATE_REQUIRED = 'Digite a data do pagamento',
   DATE_WRONG_FORMAT = 'Você precisa digitar a data e hora no formato: DD/MM/AAAA HH:MM',
+  INVALID_DATE = 'A data de pagamento digitada é inválida',
 }
 
 @Component({
@@ -37,7 +39,10 @@ export class PaymentModalComponent implements OnChanges {
   paymentForm = new FormGroup({
     name: new FormControl('', Validators.required),
     value: new FormControl('', [Validators.required, Validators.min(0)]),
-    date: new FormControl('', [Validators.required, Validators.minLength(16)]),
+    date: new FormControl('', [
+      Validators.required,
+      Validators.compose([Validators.minLength(16), paymentDateValidator()]),
+    ]),
     title: new FormControl(''),
     isPayed: new FormControl(false),
   })
@@ -54,7 +59,9 @@ export class PaymentModalComponent implements OnChanges {
     if (this.paymentToEdit) {
       const formattedDate = this.datePipe.transform(
         this.paymentToEdit.date,
-        'dd/MM/yyyy hh:mm',
+        'dd/MM/yyyy HH:mm',
+        undefined,
+        'pt-BR',
       )
 
       this.paymentForm.setValue({
@@ -62,7 +69,7 @@ export class PaymentModalComponent implements OnChanges {
         name: this.paymentToEdit.name,
         value: this.paymentToEdit.value,
         title: this.paymentToEdit.title,
-        isPayed: this.paymentToEdit.isPayed,
+        isPayed: this.paymentToEdit.isPayed || false,
       })
     }
 
@@ -96,6 +103,8 @@ export class PaymentModalComponent implements OnChanges {
       this.errorMessage = ERROR_MESSAGES.DATE_REQUIRED
     } else if (controls.date.errors?.minlength) {
       this.errorMessage = ERROR_MESSAGES.DATE_WRONG_FORMAT
+    } else if (controls.date.errors?.paymentDate) {
+      this.errorMessage = ERROR_MESSAGES.INVALID_DATE
     }
   }
 
@@ -105,6 +114,7 @@ export class PaymentModalComponent implements OnChanges {
     if (this.paymentForm.valid) {
       const paymentData = this.paymentForm.value
       paymentData.date = this.getFormattedDate(paymentData.date)
+      paymentData.isPayed = !!paymentData.isPayed // Prevent null value
       this.savePayment.emit(paymentData)
     } else {
       this.showErrors()

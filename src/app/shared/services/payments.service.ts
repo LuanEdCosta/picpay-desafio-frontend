@@ -87,6 +87,7 @@ export class PaymentsService {
   addPayment(paymentData: PaymentDataToSave): Observable<Payment> {
     return this.http.post<Payment>(this.baseUrl, {
       ...paymentData,
+      image: '',
       username: this.getUserName(paymentData.name),
     })
   }
