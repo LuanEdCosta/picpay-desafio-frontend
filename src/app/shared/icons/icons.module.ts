@@ -18,6 +18,7 @@ import {
   XCircle,
   X,
   Check,
+  Frown,
 } from 'angular-feather/icons'
 
 const icons = {
@@ -37,6 +38,7 @@ const icons = {
   XCircle,
   X,
   Check,
+  Frown,
 }
 
 @NgModule({

@@ -1,0 +1,45 @@
+@import '../styles/variables.scss';
+
+:host {
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(90deg, $darkest-accent, $danger);
+    color: $accent-text-contrast;
+
+    .not-found-content {
+      max-width: 50rem;
+
+      .not-found-content-icon {
+        height: 10rem;
+        width: 10rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .not-found-content-title {
+        font-size: 4rem;
+        font-weight: bold;
+        margin-bottom: 1.6rem;
+      }
+
+      .not-found-content-subtitle {
+        line-height: 2.4rem;
+        margin-bottom: 2.4rem;
+      }
+
+      .not-found-content-button ::ng-deep :first-child {
+        background: $accent-text-contrast;
+        color: $accent;
+        transition: transform 0.2s ease-in-out;
+
+        &:hover,
+        &:focus {
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+}

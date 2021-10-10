@@ -1,0 +1,21 @@
+<div class="not-found">
+  <div class="not-found-content">
+    <i-feather class="not-found-content-icon" name="frown"></i-feather>
+
+    <div class="not-found-content-title">Erro 404</div>
+
+    <div class="not-found-content-subtitle">
+      <div>Esta página que você tentou acessar não existe!</div>
+      <div>Clique no botão abaixo para voltar à página inicial.</div>
+    </div>
+
+    <app-button
+      class="not-found-content-button"
+      (click)="goBackToHomePage()"
+      [withIcon]="true"
+    >
+      <i-feather name="chevron-left"></i-feather>
+      <span>Voltar ao Início</span>
+    </app-button>
+  </div>
+</div>

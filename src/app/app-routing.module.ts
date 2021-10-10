@@ -17,6 +17,14 @@ const routes: Routes = [
       return import('./payments/payments.module').then((m) => m.PaymentsModule)
     },
   },
+  {
+    path: '**',
+    loadChildren: () => {
+      return import('./not-found/not-found.module').then(
+        (m) => m.NotFoundModule,
+      )
+    },
+  },
 ]
 
 @NgModule({
