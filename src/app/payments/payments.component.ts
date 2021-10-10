@@ -50,7 +50,7 @@ export class PaymentsComponent implements OnInit {
 
   constructor(private paymentsService: PaymentsService) {}
 
-  getPayments() {
+  getPayments(): void {
     this.paymentsService
       .getPayments({
         limit: this.rowsPerPage,
@@ -68,7 +68,7 @@ export class PaymentsComponent implements OnInit {
       })
   }
 
-  setSortBy(sortBy: string) {
+  setSortBy(sortBy: string): void {
     if (this.sortBy !== sortBy) {
       this.sortOrder = undefined
       this.sortBy = ''
@@ -92,32 +92,32 @@ export class PaymentsComponent implements OnInit {
     this.getPayments()
   }
 
-  setIsAddingPayment() {
+  setIsAddingPayment(): void {
     this.isShowingPaymentModal = true
   }
 
-  setPaymentToEdit(payment: Payment) {
+  setPaymentToEdit(payment: Payment): void {
     this.paymentToEdit = payment
     this.setIsAddingPayment()
   }
 
-  closePaymentModal() {
+  closePaymentModal(): void {
     this.isShowingPaymentModal = false
     this.paymentToEdit = undefined
   }
 
-  filterPayments(e: Event) {
+  filterPayments(e: Event): void {
     e.preventDefault()
     this.currentPage = 1
     this.getPayments()
   }
 
-  changePage(page: number) {
+  changePage(page: number): void {
     this.currentPage = page
     this.getPayments()
   }
 
-  changeRowsPerPage() {
+  changeRowsPerPage(): void {
     this.currentPage = 1
     this.getPayments()
   }
@@ -126,11 +126,11 @@ export class PaymentsComponent implements OnInit {
     return Math.ceil(this.totalOfPayments / this.rowsPerPage)
   }
 
-  setPaymentToDelete(payment: Payment) {
+  setPaymentToDelete(payment: Payment): void {
     this.paymentToDelete = payment
   }
 
-  deletePayment() {
+  deletePayment(): void {
     if (this.paymentToDelete) {
       const idToDelete = this.paymentToDelete.id
       this.paymentsService.deletePayment(idToDelete).subscribe(() => {
@@ -140,14 +140,14 @@ export class PaymentsComponent implements OnInit {
     }
   }
 
-  savePayment(payment: PaymentDataToSave) {
+  savePayment(payment: PaymentDataToSave): void {
     this.paymentsService.addPayment(payment).subscribe(() => {
       this.getPayments()
       this.closePaymentModal()
     })
   }
 
-  editPayment(payment: PaymentDataToSave) {
+  editPayment(payment: PaymentDataToSave): void {
     const paymentWithNewData = {
       ...this.paymentToEdit,
       ...payment,

@@ -19,12 +19,12 @@ export class UserProfileComponent implements OnInit {
     this.session = this.sessionService.getSession()
   }
 
-  logout() {
+  logout(): void {
     this.sessionService.deleteSession()
     this.router.navigateByUrl('/login')
   }
 
-  goBack() {
+  goBack(): void {
     this.router.navigateByUrl('/')
   }
 }

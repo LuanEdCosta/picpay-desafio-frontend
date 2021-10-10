@@ -34,20 +34,20 @@ export class PaginationComponent implements OnChanges {
     return Math.ceil(Math.abs(this.selectedPage / MAX_VISIBLE_PAGES) - 1)
   }
 
-  getPage(page: number) {
+  getPage(page: number): number {
     return page + this.getRange() * MAX_VISIBLE_PAGES
   }
 
-  selectPage(page: number) {
+  selectPage(page: number): void {
     if (this.selectedPage !== page) this.changePage.emit(page)
   }
 
-  nextPage() {
+  nextPage(): void {
     const newPage = Math.min(this.selectedPage + 1, this.totalOfPages)
     if (this.selectedPage !== newPage) this.changePage.emit(newPage)
   }
 
-  previousPage() {
+  previousPage(): void {
     const newPage = Math.max(this.selectedPage - 1, 1)
     if (this.selectedPage !== newPage) this.changePage.emit(newPage)
   }

@@ -9,7 +9,7 @@ import { Router } from '@angular/router'
 export class NotFoundComponent {
   constructor(private router: Router) {}
 
-  goBackToHomePage() {
+  goBackToHomePage(): void {
     this.router.navigateByUrl('/')
   }
 }

@@ -14,11 +14,11 @@ export class DeletePaymentModalComponent {
 
   constructor() {}
 
-  emitCloseModal() {
+  emitCloseModal(): void {
     this.closeModal.emit()
   }
 
-  emitDeletePayment() {
+  emitDeletePayment(): void {
     this.deletePayment.emit()
   }
 }

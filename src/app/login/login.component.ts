@@ -31,11 +31,11 @@ export class LoginComponent {
     return !this.email.trim() || !this.password.trim()
   }
 
-  togglePassword() {
+  togglePassword(): void {
     this.showPassword = !this.showPassword
   }
 
-  login() {
+  login(): void {
     this.accountService.login(this.email, this.password).subscribe(
       (accounts) => {
         if (accounts.length) {
@@ -52,7 +52,7 @@ export class LoginComponent {
     )
   }
 
-  onSubmit(e: Event) {
+  onSubmit(e: Event): void {
     e.preventDefault()
 
     this.errorMessage = ''

@@ -11,7 +11,7 @@ export class ModalHeaderComponent {
 
   constructor() {}
 
-  emitCloseModal() {
+  emitCloseModal(): void {
     this.closeModal.emit()
   }
 }

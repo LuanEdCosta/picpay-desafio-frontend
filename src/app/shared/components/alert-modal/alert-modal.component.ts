@@ -12,11 +12,11 @@ export class AlertModalComponent {
 
   constructor() {}
 
-  closeAlertModal() {
+  closeAlertModal(): void {
     this.closeModal.emit()
   }
 
-  stopPropagation(e: Event) {
+  stopPropagation(e: Event): void {
     e.stopPropagation()
   }
 }
