@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { DatePipe } from '@angular/common'
 
 import { PaymentModalComponent } from './payment-modal.component'
 
@@ -9,6 +10,7 @@ describe('PaymentModalComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PaymentModalComponent],
+      providers: [DatePipe],
     }).compileComponents()
   })
 

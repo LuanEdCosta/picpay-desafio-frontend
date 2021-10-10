@@ -11,12 +11,11 @@
     "e2e": "ng e2e",
     "api": "json-server --watch db.json",
     "prepare": "husky install",
-    "eslint:lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "eslint:lint": "eslint . --ext .js,.ts",
+    "eslint:fix": "eslint . --ext .js,.ts --fix"
   },
   "lint-staged": {
-    "*": "prettier --write --ignore-unknown",
-    "*.{js,jsx,ts,tsx}": "ng test"
+    "*.{js,ts}": "eslint --ext .js,.ts --fix"
   },
   "dependencies": {
     "@angular/animations": "~12.1.4",
