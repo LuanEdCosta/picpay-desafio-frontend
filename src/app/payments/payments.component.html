@@ -86,6 +86,15 @@
         </thead>
 
         <tbody class="content-data-table-body">
+          <tr *ngIf="!payments.length" class="content-data-table-body-row">
+            <td class="content-data-table-body-row-col col-center" colspan="6">
+              <div *ngIf="!!lastSearch.trim()">
+                Pesquisando por: {{ lastSearch }}
+              </div>
+              <div>Nenhum Pagamento Encontrado</div>
+            </td>
+          </tr>
+
           <tr
             class="content-data-table-body-row"
             *ngFor="let payment of payments"

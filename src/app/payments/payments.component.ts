@@ -31,6 +31,7 @@ export class PaymentsComponent implements OnInit {
   isShowingPaymentModal: boolean = false
 
   search: string = ''
+  lastSearch: string = ''
   sortBy: string = ''
   sortOrder?: SortOrder
   rowsPerPage: number = 5
@@ -59,6 +60,7 @@ export class PaymentsComponent implements OnInit {
         sortOrder: this.sortOrder,
       })
       .subscribe((response) => {
+        this.lastSearch = this.search
         this.payments = response.body
         this.totalOfPayments = Number(
           response.headers.get('X-Total-Count') || 0,
