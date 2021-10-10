@@ -3,7 +3,8 @@
 
   <div class="content">
     <div class="content-header">
-      <h1 class="content-title">Meus Pagamentos</h1>
+      <h1 class="content-title">Meus Pagamentos ({{ totalOfPayments }})</h1>
+
       <app-button (click)="setIsAddingPayment()" size="small" [withIcon]="true">
         <span>Adicionar Pagamento</span>
         <i-feather name="plus"></i-feather>
