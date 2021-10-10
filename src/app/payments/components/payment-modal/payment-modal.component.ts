@@ -13,6 +13,14 @@ import {
   PaymentDataToSave,
 } from '@app/shared/services/payments.service'
 
+enum ERROR_MESSAGES {
+  NAME_REQUIRED = 'Digite o nome do usuário',
+  VALUE_REQUIRED = 'Digite o valor do pagamento',
+  VALUE_MIN_VALUE = 'O valor do pagamento não pode ser um número negativo',
+  DATE_REQUIRED = 'Digite a data do pagamento',
+  DATE_WRONG_FORMAT = 'Você precisa digitar a data e hora no formato: DD/MM/AAAA HH:MM',
+}
+
 @Component({
   selector: 'app-payment-modal',
   templateUrl: './payment-modal.component.html',
@@ -28,8 +36,8 @@ export class PaymentModalComponent implements OnChanges {
   errorMessage: string = ''
   paymentForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    value: new FormControl('', Validators.required),
-    date: new FormControl('', Validators.required),
+    value: new FormControl('', [Validators.required, Validators.min(0)]),
+    date: new FormControl('', [Validators.required, Validators.minLength(16)]),
     title: new FormControl(''),
     isPayed: new FormControl(false),
   })
@@ -79,14 +87,15 @@ export class PaymentModalComponent implements OnChanges {
     }
 
     if (controls.name.errors?.required) {
-      this.errorMessage = 'Digite o nome do usuário'
-      return
+      this.errorMessage = ERROR_MESSAGES.NAME_REQUIRED
     } else if (controls.value.errors?.required) {
-      this.errorMessage = 'Digite o valor do pagamento'
-      return
+      this.errorMessage = ERROR_MESSAGES.VALUE_REQUIRED
+    } else if (controls.value.errors?.min) {
+      this.errorMessage = ERROR_MESSAGES.VALUE_MIN_VALUE
     } else if (controls.date.errors?.required) {
-      this.errorMessage = 'Digite a data do pagamento'
-      return
+      this.errorMessage = ERROR_MESSAGES.DATE_REQUIRED
+    } else if (controls.date.errors?.minlength) {
+      this.errorMessage = ERROR_MESSAGES.DATE_WRONG_FORMAT
     }
   }
 
